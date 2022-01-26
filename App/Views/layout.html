@@ -1,0 +1,87 @@
+<!doctype html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport"
+          content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/css/bootstrap.min.css" rel="stylesheet"
+          integrity="sha384-EVSTQN3/azprG1Anm3QDgpJLIm9Nao0Yz1ztcQTwFspd3yD65VohhpuuCOmLASjC" crossorigin="anonymous">
+    <link href="/css/style.css" rel="stylesheet">
+</head>
+
+<body>
+<div class="container">
+    <nav class="navbar navbar-expand-lg navbar-light bg-light">
+        <div class="container-fluid">
+            <a class="navbar-brand" href="#">Navbar</a>
+            <button class="navbar-toggler" type="button" data-bs-toggle="collapse"
+                    data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent"
+                    aria-expanded="false" aria-label="Toggle navigation">
+                <span class="navbar-toggler-icon"></span>
+            </button>
+            <div class="collapse navbar-collapse" id="navbarSupportedContent">
+                <ul class="navbar-nav me-auto mb-2 mb-lg-0">
+                    <li class="nav-item">
+                        <a class="nav-link active" aria-current="page" href="/">Home</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="/article/index">Lajmet</a>
+                    </li>
+                    {% if isMember %}
+                    <li class="nav-item">
+                        <a class="nav-link" href="/auth/profile">{{ userName }}</a>
+                    </li>
+                    {% endif %} {% if isAdmin %}
+                    <li class="nav-item">
+                        <a class="nav-link" href="/admin/dashboard">Dashboard</a>
+                    </li>
+                    {% endif %}
+
+
+                    <li class="nav-item">
+                        {% if isMember %}
+                        <a class="nav-link" href="/auth/logout">Logout</a> {% else %}
+                        <a class="nav-link" href="/auth/login">Login</a> {% endif %}
+                    </li>
+                    <li class="nav-item">
+                        {% if isMember == false %}
+                        <a class="nav-link" href="/auth/signup">Sign Up</a>
+                        {% endif %}
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="/article/advanced_search_form">Advanced Search</a>
+                    </li>
+                </ul>
+                <form class="d-flex" method="GET" action="/article/search">
+                    <input class="form-control me-2" type="search" placeholder="Search"
+                           name="search_term">
+                    <input type="submit" value="SEARCH" class="btn btn-primary">
+                </form>
+            </div>
+        </div>
+    </nav>
+
+    <main class="row">
+        <article class="col-md-8">
+            {% block content %}{% endblock %}
+        </article>
+        <aside class="col-md-4">
+            <h4>Sidebar</h4>
+        </aside>
+    </main>
+
+    <footer>
+        <p>Copyright 2021 ICK</p>
+    </footer>
+</div>
+
+
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/js/bootstrap.bundle.min.js"
+        integrity="sha384-MrcW6ZMFYlzcLA8Nl+NtUVF0sA7MsXsP1UyJoMp4YLEuNSfAP+JcXn/tWtIaxVXM"
+        crossorigin="anonymous"></script>
+</body>
+
+</html>

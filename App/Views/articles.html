@@ -1,0 +1,17 @@
+{% extends 'layout.html' %}
+
+{% block content %}
+<table class="table">
+    {% for article in articles %}
+    <tr>
+        <td>
+            {% if article.featured_image != null %}
+            <img style="width: 200px" src="/images/thumbnails/{{ article.featured_image }}" class="img-fluid">
+            {% endif %}
+        </td>
+        <td>
+            <a href="/article/show/{{ article.id }}">{{ article.title }}</a></td>
+    </tr>
+    {% endfor %}
+</table>
+{% endblock %}

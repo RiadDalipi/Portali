@@ -1,0 +1,17 @@
+{% extends 'layout.html' %} {% block content %}
+<h1>{{ article.title }}</h1>
+
+{% if article.featured_image != null %}
+<div>
+    <img src="/images/{{ article.featured_image }}" class="img-fluid">
+</div>
+{% endif %}
+
+<div>
+    {{ article.body | raw }}
+</div>
+
+<p>Data: {{ article.created_at | date('d.m.Y H:i:s') }}</p>
+<p>Rubrika: {{ article.category_name }}</p>
+<p>Autori: {{ article.full_name }}</p>
+{% endblock %}

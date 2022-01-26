@@ -1,0 +1,21 @@
+{% extends 'layout.html' %} {% block content %}
+
+<h1>Artikujt</h1>
+<form method="post" action="/admin/deletearticles">
+<table class="table">
+    {% for article in articles %}
+    <tr>
+        <td><input type="checkbox" name="deletearticle[{{ article.id }}]"></td>
+        <td>{{ article.title }}</td>
+        <td><a href="/admin/editarticle/{{ article.id }}">Edito</a></td>
+        <td><a href="/admin/deletearticle/{{ article.id }}">Fshije</a></td>
+    </tr>
+
+    {% endfor %}
+
+    <tr>
+        <td colspan="4"><input type="submit" name="FSHIJ"></td>
+    </tr>
+</table>
+</form>
+{% endblock %}

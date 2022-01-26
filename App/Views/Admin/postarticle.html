@@ -1,0 +1,61 @@
+{% extends 'layout.html' %} {% block content %}
+
+
+<form method="post" action="/admin/savearticle" enctype="multipart/form-data">
+    <input type="hidden" name="mode" value="{{ mode }}">
+    <input type="hidden" name="id" value="{{ id }}">
+    <table>
+        <tr>
+            <td><label for="title">Titulli :</label></td>
+            <td><input class="form-control" size="60" type="text" id="title" name="title" value="{{ title }}"></td>
+        </tr>
+        <tr>
+            <td><label for="editor">Teksti:</label></td>
+            <td><textarea  id="editor" class="form-control" rows="10" cols="60" name="body">{{ body }}</textarea></td>
+        </tr>
+        <tr>
+            <td>Rubrika:</td>
+            <td>
+                <select class="form-control" id="category_id" name="category_id">
+                    <option value="0">Zgjedhe rubriken...</option>
+                    {% for category in categories %}
+                    {% if category.cat_id == category_id %}
+                    <option selected value="{{ category.cat_id }}">{{ category.category_name }}</option>
+                    {% else %}
+                    <option value="{{ category.cat_id }}">{{ category.category_name }}</option>
+                    {% endif %}
+                    {% endfor %}
+                </select>
+            </td>
+        </tr>
+
+        <tr>
+            <td>Fotografia:</td>
+            <td>
+                <input type="file" name="fotografia" class="form-control">
+            </td>
+        </tr>
+
+        <tr>
+            <td></td>
+            <td><input class="btn btn-primary" type="submit" value="SAVE"></td>
+        </tr>
+    </table>
+
+    <input type="hidden" name="MAX_FILE_SIZE" value="1000000">
+</form>
+
+<script src="https://cdn.ckeditor.com/ckeditor5/29.1.0/classic/ckeditor.js"></script>
+
+<script>
+    ClassicEditor
+        .create( document.querySelector( '#editor' ) )
+        .then( editor => {
+            console.log( editor );
+        } )
+        .catch( error => {
+            console.error( error );
+        } );
+</script>
+
+{% endblock %}

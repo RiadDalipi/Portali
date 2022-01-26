@@ -1,0 +1,18 @@
+{% extends 'layout.html' %}
+{% block content %}
+<h1>Rezultatet e kerkimit per termin {{ search_term }}</h1>
+<div>
+    {% for article in articles %}
+    <p><a href="/article/show/{{ article.id }}">{{ article.title }}</a></p>
+    {% endfor %}
+</div>
+{% if pages > 1 %}
+<nav aria-label="Page navigation example">
+    <ul class="pagination">
+        {% for p in 1..pages %}
+            <li class="page-item {% if p == page %} active {% endif %}"><a   class="page-link"  href="/article/search/?search_term={{ search_term }}&page={{ p }}">{{ p }}</a></li>
+        {% endfor %}
+    </ul>
+</nav>
+{% endif %}
+{% endblock %}

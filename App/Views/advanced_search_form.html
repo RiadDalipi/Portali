@@ -1,0 +1,31 @@
+{% extends 'layout.html' %}
+{% block content %}
+<h1>Advanced Search</h1>
+<form method="GET" action="/article/advanced_search">
+    <label for="keywords">Fjalet kyce:</label>
+    <input type="text" name="keywords" id="keywords" class="form-control">
+
+    <label for="category_id">Rubrika:</label>
+    <select name="category_id" id="category_id" class="form-control">
+        <option value="0">Te gjitha rubrikat</option>
+        {% for category in categories %}
+        <option value="{{ category.cat_id }}">{{ category.category_name }}</option>
+        {% endfor %}
+    </select>
+
+    <label for="user_id">Autori:</label>
+    <select name="user_id" id="user_id" class="form-control">
+        <option value="0">Te gjitha autoret</option>
+        {% for user in users %}
+        <option value="{{ user.usr_id }}">{{ user.full_name }}</option>
+        {% endfor %}
+    </select>
+
+    <label for="date_from">Nga data:</label>
+    <input type="date" name="date_from" id="date_from" class="form-control">
+
+    <label for="date_to">Deri me daten:</label>
+    <input type="date" name="date_to" id="date_to" class="form-control">
+    <input type="SUBMIT" class="btn btn-primary" value="KERKO">
+</form>
+{% endblock %}
